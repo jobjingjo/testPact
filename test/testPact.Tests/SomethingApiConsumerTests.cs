@@ -9,20 +9,23 @@ using PactNet.Mocks.MockHttpService.Models;
 
 namespace testPact.Tests
 {
-
-    public class SomethingApiConsumerTests : IClassFixture<ConsumerMyApiPact>
+    [TestClass]
+    public class SomethingApiConsumerTests 
     {
         private IMockProviderService _mockProviderService;
         private string _mockProviderServiceBaseUri;
 
-        public SomethingApiConsumerTests(ConsumerMyApiPact data)
+
+        [TestInitialize]
+        public void Setup()
         {
+            ConsumerMyApiPact data =new ConsumerMyApiPact();
             _mockProviderService = data.MockProviderService;
             _mockProviderService.ClearInteractions(); //NOTE: Clears any previously registered interactions before the test is run
             _mockProviderServiceBaseUri = data.MockProviderServiceBaseUri;
         }
 
-        [Fact]
+        [TestMethod]
         public void GetSomething_WhenTheTesterSomethingExists_ReturnsTheSomething()
         {
             //Arrange
