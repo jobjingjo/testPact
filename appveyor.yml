@@ -1,0 +1,19 @@
+image: Visual Studio 2019
+
+before_build:
+- nuget restore
+- choco install opencover.portable
+- choco install codecov
+
+build:
+  project: testPact.sln
+  verbosity: minimal
+  
+environment:
+    COVERALLS_REPO_TOKEN:  
+       secure: NtiIhRLgwfslYkeJik7FEWfk5pufsbT60
+
+after_test: 
+    - dotnet test ./testPact.sln --no-build /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+    - C:\ProgramData\chocolatey\lib\codecov\tools\codecov.exe -f .\test\testPact.Tests\coverage.opencover.xml -t 0c3c564b-15c9-4933-be28-b64929a7fcc1
+    - C:\ProgramData\chocolatey\lib\codecov\tools\codecov.exe -f .\test\testPact.Api.Tests\coverage.opencover.xml -t 0c3c564b-15c9-4933-be28-b64929a7fcc1

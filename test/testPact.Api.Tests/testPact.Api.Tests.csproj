@@ -108,12 +108,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\testPact.Api\testPact.Api.csproj">
-      <Project>{082696D7-3FEB-4079-9048-23FF1F3F8C8F}</Project>
-      <Name>testPact.Api</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
